@@ -10,13 +10,13 @@ diaryRouter.get('/', diaryController.index)
 diaryRouter.get('/:id', diaryController.getById)
 
 // Create a diary entry with a specific date and time, text and category
-// diaryRouter.post('/', diaryController.create)
+diaryRouter.post('/', diaryController.create)
 
 // Update the text of a diary entry
 diaryRouter.patch('/:id', diaryController.update)
 
 // Delete a diary entry
-// diaryRouter.delete(':id', diaryController.destroy)
+diaryRouter.delete('/:id', diaryController.destroy)
 
 // Search for a specific diary entry by date/month/year or category
 // diaryRouter.get('/:query', diaryController.search)
