@@ -16,7 +16,7 @@ diaryRouter.post('/', diaryController.create)
 // diaryRouter.patch('/:id', diaryController.update)
 
 // Delete a diary entry
-// diaryRouter.delete(':id', diaryController.destroy)
+diaryRouter.delete('/:id', diaryController.destroy)
 
 // Search for a specific diary entry by date/month/year or category
 // diaryRouter.get('/:query', diaryController.search)

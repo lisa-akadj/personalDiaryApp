@@ -29,5 +29,16 @@ async function create(req, res) {
     }
 }
 
+async function destroy(req, res) {
+    try {
+        const id = parseInt(req.params.id);
+        const entry = await Diary.getById(id)
+        await entry.destroy();
+        res.status(204).end()
+    } catch (err) {
+        res.status(400).json({"error": err.message})
+    }
+}
 
-module.exports = { index, getById, create }
+
+module.exports = { index, getById, create, destroy }

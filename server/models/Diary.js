@@ -22,7 +22,7 @@ class Diary {
    
 
     static async getById(id) {
-    const response = await db.query("SELECT * FROM diary WHERE id = $1;", [id])
+        const response = await db.query("SELECT * FROM diary WHERE id = $1;", [id])
 
       if (response.rows.length != 1) {
           throw new Error("Unable find diary entry")
@@ -38,6 +38,15 @@ class Diary {
             [name, date, time, text, category])
             
             return new Diary(response.rows[0])
+    }
+
+    async destroy() {
+        let response = await db.query('DELETE FROM diary WHERE id = $1 RETURNING *;', [this.id])
+        if (response.rows.length != 1) {
+            throw new Error("Unable to delete entry")
+        }
+
+        return new Diary(response.rows[0])
     }
 }  
 
