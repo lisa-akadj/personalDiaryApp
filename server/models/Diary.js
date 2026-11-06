@@ -1,26 +1,36 @@
 const db = require('../database/connect')
 
 class Diary {
-    constructor({ id, date, time, text, category })
-    {
+    constructor({ id, date, time, text, category }) {
         this.id = id,
-        this.date = date,
-        this.time = time,
-        this.text = text,
-        this.category = category
+            this.date = date,
+            this.time = time,
+            this.text = text,
+            this.category = category
     }
 
 
-static async getAll() {
-    const response = await db.query('SELECT * FROM diary ORDER BY date DESC;')
+    static async getAll() {
+        const response = await db.query('SELECT * FROM diary ORDER BY date DESC;')
 
-    if (response.rows.length === 0) {
-        throw new Error('No diary entries found.')
+        if (response.rows.length === 0) {
+            throw new Error('No diary entries found.')
+        }
+
+        return response.rows.map(d => new Diary(d))
     }
 
-    return response.rows.map(d => new Diary(d))
+    static async getById(id) {
+    const response = await db.query("SELECT * FROM diary WHERE id = $1;", [id])
+
+    if (response.rows.length != 1) {
+        throw new Error("Unable find diary entry")
+    }
+    return new Diary(response.rows[0]);
     }
 }  
+
+
 
 module.exports = Diary
 
