@@ -35,12 +35,13 @@ class Diary {
         const response = await db.query("UPDATE diary SET text = $1 WHERE id = $2 RETURNING id, text;",
             [text, this.id]
         )
+    }
   
     static async create(data) {
-        const { name, date, time, text, category } = data;
+        const { date, time, text, category } = data;
         
-        let response = await db.query('INSERT INTO diary (name, date, time, text, category) VALUES($1, $2, $3, $4) RETURNING *;', 
-            [name, date, time, text, category])
+        let response = await db.query('INSERT INTO diary (date, time, text, category) VALUES($1, $2, $3, $4) RETURNING *;', 
+            [date, time, text, category])
             
             return new Diary(response.rows[0])
     }
