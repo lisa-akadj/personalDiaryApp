@@ -30,6 +30,11 @@ class Diary {
     return new Diary(response.rows[0]);
     }
 
+    async update (data) {
+        const text = data.text || this.text
+        const response = await db.query("UPDATE diary SET text = $1 WHERE id = $2 RETURNING id, text;",
+            [text, this.id]
+        )
   
     static async create(data) {
         const { name, date, time, text, category } = data;

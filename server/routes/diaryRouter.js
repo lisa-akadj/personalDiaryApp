@@ -13,7 +13,7 @@ diaryRouter.get('/:id', diaryController.getById)
 diaryRouter.post('/', diaryController.create)
 
 // Update the text of a diary entry
-// diaryRouter.patch('/:id', diaryController.update)
+diaryRouter.patch('/:id', diaryController.update)
 
 // Delete a diary entry
 diaryRouter.delete('/:id', diaryController.destroy)
