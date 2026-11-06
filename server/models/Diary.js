@@ -19,6 +19,8 @@ static async getAll() {
     }
 
     return response.rows.map(d => new Diary(d))
-}
+    }
 }  
+
+module.exports = Diary
 
