@@ -7,7 +7,7 @@ const diaryRouter = Router();
 diaryRouter.get('/', diaryController.index)
 
 // See the details of a specific diary entry
-// diaryRouter.get('/:id', diaryController.getById)
+diaryRouter.get('/:id', diaryController.getById)
 
 // Create a diary entry with a specific date and time, text and category
 diaryRouter.post('/', diaryController.create)
