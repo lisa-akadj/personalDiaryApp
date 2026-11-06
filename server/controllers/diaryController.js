@@ -19,7 +19,15 @@ async function getById(req, res) {
     }
 }
 
+async function create(req, res) {
+    try {
+       const data = req.body
+       const newEntry = await Diary.create(data)
+       res.status(201).send({data: newEntry})
+    } catch (err) {
+        res.status(400).json({"error": err.message})
+    }
+}
 
 
-
-module.exports = { index, getById }
+module.exports = { index, getById, create }
