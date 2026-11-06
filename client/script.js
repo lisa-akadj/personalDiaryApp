@@ -1,5 +1,6 @@
 const showAllBtn = document.querySelector('#show-all-btn')
 const diaryEntries = document.querySelector('#diary-entries')
+const hideAllBtn = document.querySelector("#hide-all-btn")
 let deleteBtns = null;
 
 
@@ -58,4 +59,9 @@ showAllBtn.addEventListener('click', async () => {
     showAll(diary);
     
 })
+
+hideAllBtn.addEventListener('click', () => {
+    diaryEntries.innerHTML = "";
+})
+
 
